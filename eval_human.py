@@ -169,7 +169,7 @@ def prep_display(dets_out, img, h, w, undo_transform=True, class_color=False, ma
     # Also keeps track of a per-gpu color cache for maximum speed
     def get_color(j, on_gpu=None):
         global color_cache
-        print("class_name: {} class_num: {}".format(cfg.dataset.class_names[classes[j]], j))
+        # print("class_name: {} class_num: {}".format(cfg.dataset.class_names[classes[j]], j))
         color_idx = (classes[j] * 5 if class_color else j * 5) % len(COLORS)
         
         if on_gpu is not None and color_idx in color_cache[on_gpu]:
@@ -193,7 +193,7 @@ def prep_display(dets_out, img, h, w, undo_transform=True, class_color=False, ma
         persons = torch.zeros_like(masks)
         for j in range(num_dets_to_consider):
             if(cfg.dataset.class_names[classes[j]] == 'person'):
-                print("%d, person" % j)
+                # print("%d, person" % j)
                 persons[j, :] = masks[j,:]
         masks = persons
         
